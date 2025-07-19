@@ -1,0 +1,288 @@
+body {
+	--radius-s: 0px;
+	--radius-m: 0px;
+	--radius-l: 0px;
+	--input-radius: 0px;
+	--tab-radius-active: 0px;
+	--checkbox-radius: 0px;
+	--toggle-radius: 0px;
+	--toggle-thumb-radius: 0px;
+	--slider-thumb-radius: 0px;
+
+	/* The titular tReu Colours */
+	--treu-raisin-d: #151015;
+	--treu-raisin: #1E171C;
+	--treu-raisin-l: #453032;
+	--treu-slate: #877878;
+
+	--treu-cream: #E2DBC4;
+
+	--treu-juniper-d: #143128;
+	--treu-juniper: #11553e;
+	--treu-juniper-l: #30773E;
+
+	--treu-sienna-l: #E8B487;
+
+	/* Other variables */
+	--corner-rounding: 7px;
+	--circle-rounding: 21px;
+	--fade-speed: 0.05s;
+
+	--divider-width: 1px;
+	--divider-color: var(--treu-raisin-l);
+	--tab-outline-width: 1px;
+	--tab-outline-color: var(--treu-raisin-l);
+
+	--titlebar-background-focused: var(--treu-raisin);
+	--background-modifier-message: var(--gradient-juniper-dark);
+
+	--gradient-juniper: linear-gradient(var(--treu-juniper), var(--treu-juniper-d));
+	--gradient-juniper-dark: linear-gradient(var(--treu-juniper) 0%, var(--treu-juniper-d) 50%, transparent 95%);
+	--gradient-slate: linear-gradient(var(--treu-raisin-l), var(--treu-raisin));
+	--gradient-juniper-sienna: linear-gradient(-45deg, var(--treu-juniper) 0%, var(--treu-juniper-l) 50%, var(--treu-juniper) 100%);}
+
+/* Theme colours */
+.theme-dark {
+  --background-primary: var(--treu-raisin-d);
+  --background-secondary: var(--treu-raisin);
+  --text-normal: var(--treu-cream);
+  --text-muted: var(--treu-slate);           /* Muted UI text */
+  --text-faint: var(--treu-raisin-l);          /* Very low contrast UI text */
+  --text-on-accent: var(--treu-white); /* Text on accent-colored backgrounds */
+
+  --modal-border-color: var(--treu-raisin-l);
+  --background-modifier-border: var(--treu-raisin-l);
+}
+
+svg * {
+	stroke-linecap: square;
+	stroke-linejoin: miter;
+	rx: 0;
+	ry: 0;
+}
+
+
+/* --- UI ELEMENTS --- */
+
+/* Round the corners of various UI elements*/
+input,
+.modal.mod-sidebar-layout,
+.graph-controls,
+.popover,
+.menu,
+.status-bar {
+	border-radius: var(--corner-rounding) !important;
+}
+
+/* Remove dividers between tabs */
+.workspace-tab-header.is-active::before, .workspace-tab-header.is-active::after {
+	display: none;
+}
+
+/* Icons and settings menu items */
+.clickable-icon:hover,
+.horizontal-tab-nav-item, .vertical-tab-nav-item {
+	border-radius: var(--corner-rounding);
+	transition: background-color var(--fade-speed) ease-in-out;
+}
+
+
+/* --- TAB BAR! --- */
+
+/* Active tab */
+.workspace-tab-header.is-active {
+  background-image: var(--gradient-juniper-dark);
+  font-weight: bold;
+  border-radius: var(--corner-rounding) !important;
+}
+
+/* Other icons in the tab bar shouldn't have the gradient effect */
+.workspace-tab-header.is-active:not([data-type="markdown"]):not([data-type="graph"]):not([data-type="excalidraw"]) {
+  background: var(--treu-juniper);
+}
+
+.workspace-tab-header-inner:hover {
+  transition: background-color var(--fade-speed) ease-in-out;
+  border-radius: var(--corner-rounding) !important;
+}
+
+/* Force icon colours in the tab bar to be treu-cream */
+.workspace-tab-header.is-active .workspace-tab-header-inner-close-button,
+.mod-root .workspace-tab-header-status-icon {
+    color: var(--treu-cream) !important;
+}
+
+/* Remove any pseudo-elements (e.g. lines between tabs) */
+.workspace-tab-header::after,
+.workspace-tab-header-inner::after {
+  display: none !important;
+}
+
+
+/* --- FILE NAVIGATOR --- */
+
+.nav-file-title.is-active {
+  background-color: var(--treu-juniper);
+  font-weight: bold !important;
+  transition: background-color var(--fade-speed) ease-in-out, color var(--fade-speed);
+  border-radius: var(--corner-rounding) !important;
+}
+
+.nav-file-title:hover,
+.nav-folder-title:hover {
+	transition: background-color var(--fade-speed);
+	border-radius: var(--corner-rounding) !important;
+}
+
+.nav-file-title.is-active:hover{
+	background-color: var(--treu-juniper) !important;
+	color: var(--treu-cream) !important;
+	transition: color var(--fade-speed);
+}
+
+
+/* --- MISC UI ELEMENTS --- */
+
+input[type="text"],
+input[type="search"] {
+	background-color: var(--treu-raisin-d) !important;
+	border-radius: var(--corner-rounding) !important;
+}
+
+/* Sliders */
+input[type="range"]::-webkit-slider-thumb {
+	background-color: var(--treu-cream);
+	border-radius: var(--circle-rounding);
+	border-color: transparent;
+}
+
+.dropdown {
+	background: var(--treu-raisin) !important;
+	background-image: var(--gradient-slate);
+	border-radius: var(--corner-rounding) !important;
+}
+
+button {
+	font-weight: bold;
+	border-radius: var(--corner-rounding) !important;
+}
+
+/* Specifically accent-coloured UI buttons */
+button.mod-cta {
+	background-image: var(--gradient-juniper);
+	color: var(--treu-cream)
+}
+
+/* Grey UI buttons */
+button:not(.clickable-icon):not(.mod-cta) {
+	background-image: var(--gradient-slate);
+}
+
+/* Task checkboxes */
+input[type="checkbox"],
+.markdown-preview-view input[type="checkbox"],
+.markdown-rendered input[type="checkbox"] {
+  border-radius: var(--corner-rounding);
+  border-color: var(--treu-slate)
+}
+
+/* Switches */
+.checkbox-container {
+  background: var(--treu-raisin-d);
+  border-radius: var(--corner-rounding);
+  transition: background 0.2s, border 0.2s;
+}
+
+.checkbox-container::after {
+  background: var(--treu-cream);
+  border-radius: var(--corner-rounding);
+}
+
+.checkbox-container::before {
+  background: var(--treu-juniper);
+  border-radius: var(--corner-rounding);
+}
+
+
+/* TOOLTIPS */
+.tooltip {
+  background: var(--treu-raisin);
+  color: var(--treu-sienna-l);
+  border-radius: var(--corner-rounding) !important;
+}
+
+.tooltip .tooltip-arrow {
+  border-bottom: 5px solid var(--treu-juniper-d);
+}
+
+.vertical-tab-nav-item.is-active {
+	font-weight: bold;
+}
+
+
+/* --- IN-EDITOR TEXT FORMATTING --- */
+
+/* Title */
+.inline-title {
+	background-image: var(--gradient-juniper-sienna);
+	background-repeat: repeat;
+	background-size: 200%;
+	background-clip: text;
+    -webkit-text-fill-color: transparent;
+	font-weight: 1000 !important;
+
+	animation: animated-gradient 12s linear infinite;
+}
+
+/* Headings */
+.cm-s-obsidian .HyperMD-header-1 {
+	font-size: 18px;
+	color: var(--treu-sienna-l);
+}
+.cm-s-obsidian .HyperMD-header-2 {
+	font-size: 16px;
+	color: var(--treu-sienna-l);
+}
+.cm-s-obsidian .HyperMD-header-3 {
+	font-size: 14px;
+	color: var(--treu-sienna-l);
+}
+.cm-s-obsidian .HyperMD-header-4,
+.cm-s-obsidian .HyperMD-header-5,
+.cm-s-obsidian .HyperMD-header-6  {
+	font-size: 12px;
+	color: var(--treu-sienna-l);
+}
+
+/* Callouts */
+.callout {
+  border-radius: var(--corner-rounding);
+}
+
+/* Code blocks */
+.cm-s-obsidian .HyperMD-codeblock.HyperMD-codeblock-bg,
+.cm-s-obsidian span.cm-inline-code  {
+	background-color: var(--treu-raisin);
+}
+
+
+/* --- CALENDAR PLUGIN OVERRIDES --- */
+
+.adjacent-month.svelte-q3wqg9 {
+    opacity: 1 !important;
+	color: var(--treu-raisin) !important;
+}
+
+
+/* --- ANIMATIONS --- */
+
+@keyframes animated-gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	100% {
+		background-position: 200% 250%;
+	}
+}
+
+
